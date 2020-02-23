@@ -30,7 +30,7 @@ class Server(object):
             liststr = ListToString(files)
             # send data to the client
             print(liststr)
-
+            conn.send(liststr.encode())
         while True:
             try:
                 command = client.recv(1024).decode()
@@ -56,6 +56,11 @@ class Server(object):
                     chunk = client.recv(4096)
                     with open(filename, 'wb+') as file:
                         file.write(chunk)
+
+                elif command == 'quit':
+                    client.close()
+                    print("Connection closed from: " + str(address))
+                    return False
                 else:
                     print("Received nothing")
             except:
