@@ -19,17 +19,10 @@ class Server(object):
             client.settimeout(60)
             threading.Thread(target=self.ClientListener, args=(client, address)).start()
     def ClientListener(self, client, address):
-        def send_file(self, file):
-            f = open(file, 'rb')
-            l = f.read(os.path.getsize(file))
-            self.client.send(l)
-            f.close()
-
         def ListToString(s):
             str = ""
             for element in s:
                 str += " " + element
-            print(str)
             return str
 
         def list_sender(conn):
@@ -37,13 +30,6 @@ class Server(object):
             liststr = ListToString(files)
             # send data to the client
             print(liststr)
-            conn.send(liststr.encode())
-
-        def stor(self):
-            filename = self.recv(1024).decode()
-            chunk = self.recv(4096)
-            with open(filename, 'wb+') as file:
-                 file.write(chunk)
 
         while True:
             try:
